@@ -27,7 +27,7 @@ def get_deals():
             savings = round(float(deal["savings"]))
             store = "Steam"
             link = f"https://www.cheapshark.com/redirect?dealID={deal['dealID']}"
-            msg = f"**{title}** ➡ ~~{normal_price}$~~ **{sale_price}$** (**وفر {savings}%**)
+           " msg=f"**{title}** ➡ ~~{normal_price}$~~ **{sale_price}$** (**وفر {savings}%**)
 <{link}>"
             messages.append(msg)
         return messages

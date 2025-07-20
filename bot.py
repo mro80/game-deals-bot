@@ -1,13 +1,10 @@
 
 import discord
 import requests
-import os
-import asyncio
-
-TOKEN = os.getenv("DISCORD_BOT_TOKEN")
-CHANNEL_NAME = "🔻-discounts"
 
 DEALS_API = "https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=60&pageSize=5"
+CHANNEL_NAME = "العروض"
+TOKEN = "YOUR_DISCORD_BOT_TOKEN"
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -27,8 +24,7 @@ def get_deals():
             savings = round(float(deal["savings"]))
             store = "Steam"
             link = f"https://www.cheapshark.com/redirect?dealID={deal['dealID']}"
-           " msg=f"**{title}** ➡ ~~{normal_price}$~~ **{sale_price}$** (**وفر {savings}%**)
-<{link}>"
+            msg = f"**{title}** ➡ ~~{normal_price}~~ **{sale_price}ريال** (**وفر {savings}%**) • المتجر: {store} • 🔗<{link}>"
             messages.append(msg)
         return messages
     except Exception as e:
@@ -36,7 +32,7 @@ def get_deals():
 
 @client.event
 async def on_ready():
-    print(f"✅ تم تسجيل الدخول كـ {client.user}")
+    print(f"✅ تم تسجيل الدخول ك {client.user}")
     for guild in client.guilds:
         for channel in guild.text_channels:
             if channel.name == CHANNEL_NAME:
